@@ -20,7 +20,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
-import io.papermc.lib.PaperLib;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
 import me.voper.slimeframe.implementation.SFrameStacks;
@@ -45,7 +44,7 @@ public class Foundry extends MultiBlockMachine {
     @Override
     public void onInteract(Player p, Block b) {
         Block dispBlock = b.getRelative(BlockFace.DOWN);
-        BlockState state = PaperLib.getBlockState(dispBlock, false).getState();
+        BlockState state = dispBlock.getState();
 
         if (state instanceof Dispenser disp) {
             Inventory inv = disp.getInventory();
