@@ -11,6 +11,14 @@ options:
   # Probability of a villager obtaining a trade with one of the SlimeFrame ores in %
   ore-trade-chance: 1
 
+# Raknoid CaveSpiders are not created in these vanilla-only worlds.
+# World names are matched case-insensitively.
+raknoids:
+  blocked-worlds:
+    - clasico
+    - clasico_nether
+    - clasico_the_end
+
 relics:
   # One lith relic every X fishes caught
   lith: 50
