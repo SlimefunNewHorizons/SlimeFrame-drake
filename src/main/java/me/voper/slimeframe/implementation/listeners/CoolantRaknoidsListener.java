@@ -1,6 +1,8 @@
 package me.voper.slimeframe.implementation.listeners;
 
+import java.util.Locale;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.Nonnull;
@@ -24,6 +26,7 @@ import com.github.drakescraft_labs.slimefun4.libraries.dough.data.persistent.Per
 import me.voper.slimeframe.SlimeFrame;
 import me.voper.slimeframe.implementation.SFrameStacks;
 import me.voper.slimeframe.implementation.tasks.CoolantRaknoidsTask;
+import me.voper.slimeframe.core.managers.SettingsManager.ConfigField;
 import me.voper.slimeframe.utils.Keys;
 
 public class CoolantRaknoidsListener implements Listener {
@@ -38,14 +41,19 @@ public class CoolantRaknoidsListener implements Listener {
 
     private static final String NATURAL = "natural";
     private static final String NOT_NATURAL = "not-natural";
+    private final Set<String> blockedWorlds;
 
     public CoolantRaknoidsListener(@Nonnull SlimeFrame plugin) {
+        blockedWorlds = plugin.getSettingsManager().getStringList(ConfigField.RAKNOIDS_BLOCKED_WORLDS).stream()
+                .map(worldName -> worldName.toLowerCase(Locale.ROOT))
+                .collect(java.util.stream.Collectors.toUnmodifiableSet());
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
     public void onCaveSpiderSpawn(@Nonnull CreatureSpawnEvent e) {
         if (!(e.getEntity() instanceof CaveSpider caveSpider)) return;
+        if (blockedWorlds.contains(caveSpider.getWorld().getName().toLowerCase(Locale.ROOT))) return;
 
         final String data = e.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL ? NATURAL : NOT_NATURAL;
 

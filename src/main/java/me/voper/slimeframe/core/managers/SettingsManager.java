@@ -71,6 +71,7 @@ public final class SettingsManager {
         RESEARCHES_ENABLED("options.enable-researches", true),
         ENABLE_AE_ITEMS_IN_SOUL_CONTRACTS("options.enable-ae-items-in-soul-contracts", false),
         ORE_TRADE_CHANCE("options.ore-trade-chance", 1),
+        RAKNOIDS_BLOCKED_WORLDS("raknoids.blocked-worlds", List.of("clasico", "clasico_nether", "clasico_the_end")),
 
         LITH_RELIC("relics.lith", 50),
         MESO_RELIC("relics.meso", 750),
