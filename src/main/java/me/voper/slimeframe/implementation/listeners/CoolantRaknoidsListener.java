@@ -70,6 +70,10 @@ public class CoolantRaknoidsListener implements Listener {
     public void onRaknoidsLoad(@Nonnull EntitiesLoadEvent e) {
         for (Entity entity : e.getEntities()) {
             if (!PersistentDataAPI.hasString(entity, Keys.RAKNOID)) continue;
+            if (isBlockedWorld(entity)) {
+                clearRaknoid(entity);
+                continue;
+            }
             CoolantRaknoidsTask.RAKNOIDS_UUIDS.add(entity.getUniqueId());
         }
     }
@@ -85,6 +89,10 @@ public class CoolantRaknoidsListener implements Listener {
     public void onChunkLoad(@Nonnull ChunkLoadEvent e) {
         for (Entity entity : e.getChunk().getEntities()) {
             if (!PersistentDataAPI.hasString(entity, Keys.RAKNOID)) continue;
+            if (isBlockedWorld(entity)) {
+                clearRaknoid(entity);
+                continue;
+            }
             CoolantRaknoidsTask.RAKNOIDS_UUIDS.add(entity.getUniqueId());
         }
     }
@@ -110,6 +118,18 @@ public class CoolantRaknoidsListener implements Listener {
         PersistentDataAPI.setString(caveSpider, Keys.RAKNOID, data);
         CoolantRaknoidsTask.RAKNOIDS_UUIDS.add(caveSpider.getUniqueId());
         caveSpider.addPotionEffects(RAKNOIDS_POTIONS);
+    }
+
+    private boolean isBlockedWorld(Entity entity) {
+        return blockedWorlds.contains(entity.getWorld().getName().toLowerCase(Locale.ROOT));
+    }
+
+    private void clearRaknoid(Entity entity) {
+        PersistentDataAPI.remove(entity, Keys.RAKNOID);
+        CoolantRaknoidsTask.RAKNOIDS_UUIDS.remove(entity.getUniqueId());
+        if (entity instanceof CaveSpider caveSpider) {
+            RAKNOIDS_POTIONS.forEach(effect -> caveSpider.removePotionEffect(effect.getType()));
+        }
     }
 
 }
