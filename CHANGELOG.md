@@ -1,54 +1,20 @@
-# [1.7.0](https://github.com/VoperAD/SlimeFrame/compare/v1.6.2...v1.7.0) (2025-05-08)
-
-
-### Features
-
-* input configurator now works with the Garden Cloche from Cultivation ([5f1cc7b](https://github.com/VoperAD/SlimeFrame/commit/5f1cc7b29cd85e1865effd7998bbb08d1878f6bd))
-
-
-
-## [1.6.2](https://github.com/VoperAD/SlimeFrame/compare/v1.6.1...v1.6.2) (2024-07-14)
+## [1.7.1](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/compare/v1.7.0...v1.7.1) (2026-11-22)
 
 
 ### Bug Fixes
 
-* mark selector items using PDC ([96dd1e8](https://github.com/VoperAD/SlimeFrame/commit/96dd1e88d135a3516b76a79100aeec3114351032))
+* **build:** sin PaperLib (Block#getState(false) de Paper) para compilar contra Paper 1.21.11 ([ab756f2](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/commit/ab756f244c9c076a103e3f0b740e9b9c52038e94))
+* limpia Raknoids heredados de Clasico ([210ac2f](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/commit/210ac2fc6d2876d62997686533c4876514deb51b))
+* protege Clasico de Raknoids ([f685ce2](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/commit/f685ce22d2db0669f0972d010558b550085a4565))
 
 
 
-## [1.6.1](https://github.com/VoperAD/SlimeFrame/compare/v1.6.0...v1.6.1) (2024-04-28)
-
-
-### Bug Fixes
-
-* update orokin wand lore to 64 uses left ([#7](https://github.com/VoperAD/SlimeFrame/issues/7)) ([3cfada7](https://github.com/VoperAD/SlimeFrame/commit/3cfada78f312025cf8b1092fa54a843109c54674))
-
-
-
-# [1.6.0](https://github.com/VoperAD/SlimeFrame/compare/v1.5.1...v1.6.0) (2024-01-13)
+# [1.7.0](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/compare/94f75a88d12adf8e7035dbc0c63526d2b08093d8...v1.7.0) (2026-09-26)
 
 
 ### Bug Fixes
 
-* add terracotta to TerracottaGenerator ([fd6f711](https://github.com/VoperAD/SlimeFrame/commit/fd6f711e0b4307f4a4bc7e58339178f19eb817e9))
-
-
-### Features
-
-* **api:** start of events api ([f500c16](https://github.com/VoperAD/SlimeFrame/commit/f500c168a74c382d149f259538580078e98958fb))
+* **core:** actualizar a Paper 1.21 / 26.2 y erradicar XSeries (cierra [#1](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/issues/1)) ([94f75a8](https://github.com/SlimefunNewHorizons/SlimeFrame-drake/commit/94f75a88d12adf8e7035dbc0c63526d2b08093d8))
 
 
 
-## [1.5.1](https://github.com/VoperAD/SlimeFrame/compare/v1.5.0...v1.5.1) (2024-01-01)
-
-
-### Bug Fixes
-
-* **relics:** add the concrete generator power cell as a relic reward ([96e5bd7](https://github.com/VoperAD/SlimeFrame/commit/96e5bd7c525979d74c7f316af87b383e9e94e57a))
-
-<!-- DRAKES-STATUS:BEGIN -->
-> Estado de sincronizacion: **2026-04-24**.
-> Baseline tecnico vigente: **Paper 1.21.1 + Java 21**.
-> CI principal en `main`: **Gates 1-5 en verde**.
-> Nota: el monorepo completo sigue en migracion incremental por lotes.
-<!-- DRAKES-STATUS:END -->
