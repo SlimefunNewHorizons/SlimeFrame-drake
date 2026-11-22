@@ -49,7 +49,7 @@ jobs:
           mvn versions:commit
           git commit -am "chore(release): version ${{ steps.changelog.outputs.tag }} [skip ci]"
           git tag -a ${{ steps.changelog.outputs.tag }} -m "${{ steps.changelog.outputs.tag }}"
-          git push origin main --follow-tags
+          git push --atomic origin main --follow-tags
 
       - name: Generate jar
         if: steps.changelog.outputs.skipped == 'false'
