@@ -10,16 +10,19 @@ permissions:
 jobs:
   on-success:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' }}
 
     steps:
       - uses: actions/checkout@v4.1.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
 
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 17
-          distribution: adopt
+          java-version: 21
+          distribution: temurin
 
       - name: Get artifact id
         id: project
@@ -36,15 +39,21 @@ jobs:
           skip-commit: true
           skip-tag: true
           git-push: false
+          skip-git-pull: true
 
       - name: Update pom.xml version and push changes
         if: steps.changelog.outputs.skipped == 'false'
+        env:
+          GIT_AUTHOR_NAME: JackStar6677-1
+          GIT_AUTHOR_EMAIL: pablo.elias.miranda.292003@gmail.com
+          GIT_COMMITTER_NAME: JackStar6677-1
+          GIT_COMMITTER_EMAIL: pablo.elias.miranda.292003@gmail.com
         run: |
           mvn versions:set -DnewVersion=${{ steps.changelog.outputs.version }}
           mvn versions:commit
           git commit -am "chore(release): version ${{ steps.changelog.outputs.tag }} [skip ci]"
           git tag -a ${{ steps.changelog.outputs.tag }} -m "${{ steps.changelog.outputs.tag }}"
-          git push origin main --follow-tags
+          git push --atomic origin HEAD:refs/heads/main --follow-tags
 
       - name: Generate jar
         if: steps.changelog.outputs.skipped == 'false'
